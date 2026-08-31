@@ -73,9 +73,9 @@ else
   cp resources/options.yaml.template resources/options.yaml
   /usr/local/bin/yq e -i '.options.hub.name="'"$HUB_CLUSTER_NAME"'"' resources/options.yaml
   /usr/local/bin/yq e -i '.options.hub.baseDomain="'"$BASE_DOMAIN"'"' resources/options.yaml
-  /usr/local/bin/yq e -i '.options.clusters.name="'"$MANAGED_CLUSTER_NAME"'"' resources/options.yaml
-  /usr/local/bin/yq e -i '.options.clusters.baseDomain="'"$MANAGED_CLUSTER_BASE_DOMAIN"'"' resources/options.yaml
-  /usr/local/bin/yq e -i '.options.clusters.kubeconfig="'"$MAKUBECONFIG"'"' resources/options.yaml
+  /usr/local/bin/yq e -i '.options.clusters[0].name="'"$MANAGED_CLUSTER_NAME"'"' resources/options.yaml
+  /usr/local/bin/yq e -i '.options.clusters[0].baseDomain="'"$MANAGED_CLUSTER_BASE_DOMAIN"'"' resources/options.yaml
+  /usr/local/bin/yq e -i '.options.clusters[0].kubeconfig="'"$MAKUBECONFIG"'"' resources/options.yaml
   cat resources/options.yaml
   ginkgo --focus=$TAGGING -v pkg/tests/ -- -options=../../resources/options.yaml -v=5
 fi
